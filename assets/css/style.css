@@ -20,14 +20,15 @@ body {
 }
 
 .gameBox {
-    background: rgba(175, 158, 158, 0.4);
+    /* background: rgba(175, 158, 158, 0.4); */
     margin: 15px;
     padding: 15px;
-    border: ridge;
-    border-color: rgb(175, 158, 70);
+    /* border: ridge;
+    border-color: rgb(175, 158, 70); */
     border-width: 5px;
-    height: 900px
-    /* overflow: hidden; */
+    height: 900px;
+   
+  
 }
 
 #heading {
@@ -48,8 +49,9 @@ body {
     font-size: 40px;
 }
 
-.button {
+.btn {
     /* text-align: center; */
+    background-color: white;
     font-family: 'Lato', sans-serif;
     width: 100%;
     margin-top: 30px;
