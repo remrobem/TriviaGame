@@ -1,1 +1,66 @@
+/* needed to make sure image covered whole body */
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: Verdana, Geneva, sans-serif;
+    background: url("../images/background.jpg");
+    background-size: cover;
+    min-height: 100%;
+    background-repeat: no-repeat;
+    /* margin: 5px 0 5px 5px; */
+
+    height: 100%;
+}
+
+.row {
+    text-align: center;
+}
+
+.gameBox {
+    background: rgba(175, 158, 158, 0.4);
+    margin: 15px;
+    padding: 15px;
+    border: ridge;
+    border-color: rgb(175, 158, 70);
+    border-width: 5px;
+    height: 900px
+    /* overflow: hidden; */
+}
+
+#heading {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 80px;
+    color: rgb(77, 12, 231);
+}
+
+#timeRemaining {
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+    padding-top: 80px;
+}
+
+#questionRow {
+    padding-top: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+}
+
+.button {
+    /* text-align: center; */
+    font-family: 'Lato', sans-serif;
+    width: 100%;
+    margin-top: 30px;
+    
+}
+
+.response {
+    /* text-align: center; */
+    width: 100%;
+    margin-top: 30px;
+    display: none;
+    
+}
 
