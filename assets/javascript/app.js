@@ -1,5 +1,6 @@
 window.onload = function () {
   $("#startButton").click(triviaGame.startGame);
+  $(".gameBtn").click(triviaGame.buttonProcess);
 
 
 };
@@ -61,6 +62,11 @@ let defaultSeconds = "5";
 let seconds = "0";
 let clockRunning = false;
 let questionIndex = 0;
+let correctAnswer = "";
+let wins = 0;
+let losses = 0;
+
+
 let triviaGame = {
 
   startGame: function () {
@@ -82,7 +88,7 @@ let triviaGame = {
 
       $("#question").text(questionArray[questionIndex]["question"]);
 
-      triviaGame.buildAnswers(questionIndex);
+      triviaGame.displayAnswers(questionIndex);
 
       questionIndex++;
 
@@ -99,13 +105,16 @@ let triviaGame = {
     // });
   },
 
-  buildAnswers: function (i) {
+  displayAnswers: function (i) {
 
     questionArray[i]["answers"].forEach(function (_, j) {
       $("#button" + j).text(questionArray[i]["answers"][j]["answer"]);
+
+      if (questionArray[i]["answers"][j]["correct"] === "true") {
+        correctAnswer = questionArray[i]["answers"][j]["answer"];
+      }
     });
   },
-
 
   count: function () {
     seconds--;
@@ -116,6 +125,7 @@ let triviaGame = {
       clearInterval(intervalId);
       clockRunning = false;
       $("#question").text("Out of time");
+      losses++;
       timerId = setTimeout(triviaGame.processQuestion, 3000);
 
     };
@@ -133,9 +143,31 @@ let triviaGame = {
 
   },
 
+
+  buttonProcess: function (e) {
+
+    clearInterval(intervalId);
+    clockRunning = false;
+
+    if (this.attributes["data-value"].ownerElement.innerText === correctAnswer) {
+      $("#question").text("Correct Answer");
+      wins++;
+    } else {
+      $("#question").text("Buggy. The answer is: " + correctAnswer);
+      losses++;
+    }
+
+    timerId = setTimeout(triviaGame.processQuestion, 3000);
+
+  },
+
+
   endGame: function () {
 
     $("#question").text("Game Over");
+    $("#timeRemaining").text("");
+    // $('#start').show();
+    // $('#game').hide();
 
   },
 
