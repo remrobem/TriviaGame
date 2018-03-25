@@ -10,8 +10,6 @@ body {
     background-size: cover;
     min-height: 100%;
     background-repeat: no-repeat;
-    /* margin: 5px 0 5px 5px; */
-
     height: 100%;
 }
 
@@ -19,16 +17,23 @@ body {
     text-align: center;
 }
 
+#game {
+    display: none;
+}
+
+#start .btn {
+    font-family: 'Lato', sans-serif;   
+    width: 100%;
+    height: 90px;
+    margin-top: 60%;
+    font-size: 30px;
+}
+
 .gameBox {
-    /* background: rgba(175, 158, 158, 0.4); */
     margin: 15px;
     padding: 15px;
-    /* border: ridge;
-    border-color: rgb(175, 158, 70); */
     border-width: 5px;
     height: 900px;
-   
-  
 }
 
 #heading {
@@ -40,7 +45,8 @@ body {
 #timeRemaining {
     font-family: 'Roboto', sans-serif;
     font-size: 35px;
-    padding-top: 80px;
+    padding-top: 60px;
+    color: green;
 }
 
 #questionRow {
@@ -49,20 +55,15 @@ body {
     font-size: 40px;
 }
 
-.btn {
-    /* text-align: center; */
-    background-color: white;
+#game .btn {
+    /* background-color: white; */
     font-family: 'Lato', sans-serif;
     width: 100%;
     margin-top: 30px;
-    
 }
 
 .response {
-    /* text-align: center; */
     width: 100%;
     margin-top: 30px;
     display: none;
-    
 }
-

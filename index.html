@@ -24,25 +24,36 @@
 
 <body>
 
-    <div class="container-fluid">
+    <!-- heading on all pages -->
+    <div class="container-fluid" id="heading">
 
+        <div class="row">
+            <div class="col-md-12" id="heading">
+                Totally Trivial Trivia!
+            </div>
+        </div>
+    </div>
 
+    <!-- Start button -->
+    <div class="container-fluid" id="start">
 
         <div class="row ">
+            <div class="col-md-4 "></div>
+            <div class="col-md-4 startBox">
+                <button type="button" class="btn btn-primary" id="startButton">Start</button>
+            </div>
+            <div class="col-md-4 "></div>
+        </div>
+    </div>
 
+    <!-- Main Game -->
+    <div class="container-fluid" id="game">
+
+        <div class="row ">
             <!-- empty columns outside left of game box -->
             <div class="col-md-2 "></div>
-
             <!-- main column that contains the game -->
             <div class="col-md-8 gameBox">
-
-                <!-- heading row -->
-                <div class="row">
-                    <div class="col-md-12" id="heading">
-                        Totally Trivial Trivia!
-                    </div>
-                </div>
-
                 <!-- time countdown row -->
                 <div class="row ">
                     <div class="col-md-12" id="timeRemaining">
@@ -53,7 +64,7 @@
 
                 <!-- question and message row -->
                 <div class="row">
-                        <div class="col-md-2"></div>
+                    <div class="col-md-2"></div>
                     <div class="col-md-8" id="questionRow">
                         <span id="question">dkhj kdjf akjh akjshaskjh ldsfkj ldskf dslkfjldskj sdlkfdslkj?</span>
                     </div>
@@ -68,22 +79,8 @@
                         <div class="col-md-4 "></div>
                         <!-- button -->
                         <div class="col-md-4 ">
-                            <button type="button" class="btn btn-primary btn-lg btn-block" data-value="0">
-                                <img src="assets/images/crystal1.png">
-                            </button>
-                        </div>
-                        <!-- empty column -->
-                        <div class="col-md-4 "></div>
-                    </div>
-
-                    <!-- button row -->
-                    <div class="row">
-                        <!-- empty column -->
-                        <div class="col-md-4 "></div>
-                        <!-- button -->
-                        <div class="col-md-4 ">
                             <button type="button" class="btn btn-primary btn-lg btn-block" data-value="1">
-                                <img src="assets/images/crystal1.png">
+                                <span id="button0"></span>
                             </button>
                         </div>
                         <!-- empty column -->
@@ -96,8 +93,22 @@
                         <div class="col-md-4 "></div>
                         <!-- button -->
                         <div class="col-md-4 ">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" data-value="2">
-                                <img src="assets/images/crystal1.png">
+                            <button type="button" class="btn btn-primary btn-lg btn-block" data-value="2">
+                                <span id="button1"></span>
+                            </button>
+                        </div>
+                        <!-- empty column -->
+                        <div class="col-md-4 "></div>
+                    </div>
+
+                    <!-- button row -->
+                    <div class="row">
+                        <!-- empty column -->
+                        <div class="col-md-4 "></div>
+                        <!-- button -->
+                        <div class="col-md-4 ">
+                            <button type="button" class="btn btn-primary btn-lg btn-block" data-value="3">
+                                <span id="button2"></span>
                             </button>
                         </div>
                         <!-- empty column -->
@@ -110,8 +121,8 @@
                         <div class="col-md-4 "></div>
                         <!-- button -->
                         <div class="col-md-4 ">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" data-value="3">
-                                <img src="assets/images/crystal1.png">
+                            <button type="button" class="btn btn-primary btn-lg btn-block" data-value="4">
+                                <span id="button3"></span>
                             </button>
                         </div>
                         <!-- empty column -->
@@ -119,26 +130,27 @@
                     </div>
                 </div>
                 <div class="row response">
-                     <!-- empty column -->
-                     <div class="col-md-4"></div>
+                    <!-- empty column -->
+                    <div class="col-md-4"></div>
 
-                     <div class="col-md-4">
-                         <span id="responseBox">asdsasadsadsadd</span>
-                     </div>
-                      <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <span id="responseBox">asdsasadsadsadd</span>
+                    </div>
+                    <div class="col-md-4"></div>
                 </div>
             </div>
 
             <!-- empty columns outside right of game box -->
             <div class="col-md-2"></div>
 
+        </div>
+    </div>
+
+    <script type='text/javascript' src='assets/javascript/app.js'></script>
 
 
-            <script type='text/javascript' src='assets/javascript/app.js'></script>
-           
 
 
-            
 </body>
 
 </html>
