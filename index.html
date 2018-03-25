@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-</html>
-
 <head>
     <meta charset="utf-8">
 
@@ -46,6 +44,8 @@
         </div>
     </div>
 
+
+
     <!-- Main Game -->
     <div class="container-fluid" id="game">
 
@@ -79,7 +79,7 @@
                         <div class="col-md-4 "></div>
                         <!-- button -->
                         <div class="col-md-4 ">
-                            <button type="button" class="btn btn-primary btn-lg btn-block gameBtn" data-value="1">
+                            <button type="button" class="btn btn-primary btn-lg btn-block gameBtn" data-value="0">
                                 <span id="button0"></span>
                             </button>
                         </div>
@@ -93,7 +93,7 @@
                         <div class="col-md-4 "></div>
                         <!-- button -->
                         <div class="col-md-4 ">
-                            <button type="button" class="btn btn-primary btn-lg btn-block gameBtn" data-value="2">
+                            <button type="button" class="btn btn-primary btn-lg btn-block gameBtn" data-value="1">
                                 <span id="button1"></span>
                             </button>
                         </div>
@@ -107,7 +107,7 @@
                         <div class="col-md-4 "></div>
                         <!-- button -->
                         <div class="col-md-4 ">
-                            <button type="button" class="btn btn-primary btn-lg btn-block gameBtn" data-value="3">
+                            <button type="button" class="btn btn-primary btn-lg btn-block gameBtn" data-value="2">
                                 <span id="button2"></span>
                             </button>
                         </div>
@@ -121,7 +121,7 @@
                         <div class="col-md-4 "></div>
                         <!-- button -->
                         <div class="col-md-4 ">
-                            <button type="button" class="btn btn-primary btn-lg btn-block gameBtn" data-value="4">
+                            <button type="button" class="btn btn-primary btn-lg btn-block gameBtn" data-value="3">
                                 <span id="button3"></span>
                             </button>
                         </div>
@@ -134,7 +134,7 @@
                     <div class="col-md-4"></div>
 
                     <div class="col-md-4">
-                        <span id="responseBox">asdsasadsadsadd</span>
+                        <span id="responseBox"></span>
                     </div>
                     <div class="col-md-4"></div>
                 </div>
@@ -146,10 +146,58 @@
         </div>
     </div>
 
+    <!-- Game over  -->
+    <div class="container-fluid" id="gameOver">
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <span id="gameOverMsg">All done. Here is how you did!</span>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                Correct Answers:
+                <span id="correctAnswers"></span>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                Incorrect Answers:
+                <span id="incorrectAnswers"></span>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                Unanswered:
+                <span id="unanswered"></span>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+        <div class="row">
+            <!-- empty column -->
+            <div class="col-md-4 "></div>
+            <!-- button -->
+            <div class="col-md-4 ">
+                <button type="button" class="btn btn-primary" id="startOverBtn">Start Over?</button>
+            </div>
+            <!-- empty column -->
+            <div class="col-md-4 "></div>
+        </div>
+
+    </div>
+
     <script type='text/javascript' src='assets/javascript/app.js'></script>
-
-
-
 
 </body>
 

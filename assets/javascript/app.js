@@ -1,7 +1,7 @@
 window.onload = function () {
   $("#startButton").click(triviaGame.startGame);
+  $("#startOverBtn").click(triviaGame.restartGame);
   $(".gameBtn").click(triviaGame.buttonProcess);
-
 
 };
 
@@ -49,14 +49,14 @@ let questionArray = [{
   }
 ];
 
-console.log(questionArray[0]["question"]);
-console.log(questionArray[0]["answers"][0]["answer"]);
-console.log(questionArray[0]["answers"][0]["correct"]);
-console.log(questionArray[1]["question"]);
-console.log(questionArray[1]["answers"][0]["answer"]);
-console.log(questionArray[1]["answers"][0]["correct"]);
+// console.log(questionArray[0]["question"]);
+// console.log(questionArray[0]["answers"][0]["answer"]);
+// console.log(questionArray[0]["answers"][0]["correct"]);
+// console.log(questionArray[1]["question"]);
+// console.log(questionArray[1]["answers"][0]["answer"]);
+// console.log(questionArray[1]["answers"][0]["correct"]);
 
-let numberOfQuestions = 2;
+
 
 let defaultSeconds = "5";
 let seconds = "0";
@@ -65,44 +65,38 @@ let questionIndex = 0;
 let correctAnswer = "";
 let wins = 0;
 let losses = 0;
+let unanswered = 0;
 
 
 let triviaGame = {
 
   startGame: function () {
     $('#start').hide();
+    $('#gameOver').hide();
     $('#game').show();
     triviaGame.spiders();
     triviaGame.processQuestion();
 
   },
 
+
   processQuestion: function () {
-
-
-    // questionArray.forEach(function (_, i) {
 
 
 
     if (questionIndex < questionArray.length) {
 
       $("#question").text(questionArray[questionIndex]["question"]);
-
       triviaGame.displayAnswers(questionIndex);
-
       questionIndex++;
+      clockRunning = true;
+      seconds = defaultSeconds;
+      intervalId = setInterval(triviaGame.count, 1000);
 
-      if (!clockRunning) {
-        seconds = defaultSeconds.toString().padStart(2, "0");
-        triviaGame.timeWarning(seconds);
-        $('#seconds').text(seconds);
-        clockRunning = true;
-        intervalId = setInterval(triviaGame.count, 1000);
-      };
     } else {
       triviaGame.endGame();
     }
-    // });
+
   },
 
   displayAnswers: function (i) {
@@ -117,18 +111,28 @@ let triviaGame = {
   },
 
   count: function () {
-    seconds--;
+    // seconds--;
+    // make sure seconds displays 2 digits
     seconds = seconds.toString().padStart(2, "0");
+
+    // set text color to green/yellow/red based on time remaining
     triviaGame.timeWarning(seconds);
+
+    // display the seconds remaining
     $('#seconds').text(seconds);
+
+
     if (seconds === "00") {
       clearInterval(intervalId);
       clockRunning = false;
-      $("#question").text("Out of time");
-      losses++;
+      $("#question").text("Out of time. The answer is: " + correctAnswer);
+      unanswered++;
+
       timerId = setTimeout(triviaGame.processQuestion, 3000);
 
     };
+
+    seconds--;
   },
 
   timeWarning: function (seconds) {
@@ -148,12 +152,12 @@ let triviaGame = {
 
     clearInterval(intervalId);
     clockRunning = false;
-
-    if (this.attributes["data-value"].ownerElement.innerText === correctAnswer) {
+    
+    if (this.attributes["2"].ownerElement.innerText === correctAnswer) {
       $("#question").text("Correct Answer");
       wins++;
     } else {
-      $("#question").text("Buggy. The answer is: " + correctAnswer);
+      $("#question").text("Wrong. The answer is: " + correctAnswer);
       losses++;
     }
 
@@ -164,16 +168,33 @@ let triviaGame = {
 
   endGame: function () {
 
-    $("#question").text("Game Over");
-    $("#timeRemaining").text("");
-    // $('#start').show();
-    // $('#game').hide();
+    $("#correctAnswers").text(wins);
+    $("#incorrectAnswers").text(losses);
+    $("#unanswered").text(unanswered);
+
+    $('#game').hide();
+    $('#gameOver').show();
+    
+    // clearInterval(intervalId);
+    // clearInterval(timerId);
+  },
+
+
+  restartGame: function () {
+
+    seconds = "0";
+    clockRunning = false;
+    questionIndex = 0;
+    correctAnswer = "";
+    wins = 0;
+    losses = 0;
+    unanswered = 0;
+
+    triviaGame.startGame();
 
   },
 
-  timeout: function () {
 
-  },
 
 
 
