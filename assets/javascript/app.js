@@ -114,15 +114,8 @@ let questionArray = [{
   }
 ];
 
-// console.log(questionArray[0]["question"]);
-// console.log(questionArray[0]["answers"][0]["answer"]);
-// console.log(questionArray[0]["answers"][0]["correct"]);
-// console.log(questionArray[1]["question"]);
-// console.log(questionArray[1]["answers"][0]["answer"]);
-// console.log(questionArray[1]["answers"][0]["correct"]);
 
-
-
+// global variables
 let defaultSeconds = "30";
 let defaultTimeout = 5000;
 let seconds = "0";
@@ -134,41 +127,46 @@ let wins = 0;
 let losses = 0;
 let unanswered = 0;
 
-
+// main game object
 let triviaGame = {
 
+  // start the game when start or start over buttons selected 
   startGame: function () {
     $('#start').hide();
     $('#gameOver').hide();
     $('#game').show();
     $('#responseBox').hide();
+
     triviaGame.spiders();
     triviaGame.processQuestion();
 
   },
 
-
+  // display the questions and set timer waiting for reponse
   processQuestion: function () {
 
     if (questionIndex < questionArray.length) {
-
-      $("#question").text(questionArray[questionIndex]["question"]);
-      triviaGame.displayAnswers(questionIndex);
-      questionIndex++;
       clockRunning = true;
       seconds = defaultSeconds;
+      // call count one time initially so no gap in timer
+      triviaGame.count();
       intervalId = setInterval(triviaGame.count, 1000);
+      // display the question and then use function to display answers
+      $("#question").text(questionArray[questionIndex]["question"]);
+      triviaGame.displayAnswers(questionIndex);
 
+      questionIndex++;
     } else {
+      //end game when no more questions
       triviaGame.endGame();
     }
 
   },
 
+  // display the answers for the question
   displayAnswers: function (i) {
 
-
-    questionArray[i]["answers"].forEach(function (_, j) {
+        questionArray[i]["answers"].forEach(function (_, j) {
       $("#button" + j).text(questionArray[i]["answers"][j]["answer"]);
 
       if (questionArray[i]["answers"][j]["correct"] === "true") {
@@ -181,6 +179,8 @@ let triviaGame = {
     $('#qaBox').show();
   },
 
+  // executed by the setinterval for player to respond to question
+  // if it times out, the correct answer is displayed and nest question presented
   count: function () {
     // seconds--;
     // make sure seconds displays 2 digits
@@ -192,13 +192,13 @@ let triviaGame = {
     // display the seconds remaining
     $('#seconds').text(seconds);
 
-
+    // when time ends, display out of time information
     if (seconds === "00") {
-
+      unanswered++;
       clearInterval(intervalId);
       clockRunning = false;
+
       $("#question").text("Out of time. The answer is: " + correctAnswer);
-      unanswered++;
 
       triviaGame.responseImage();
       timerId = setTimeout(triviaGame.processQuestion, defaultTimeout);
@@ -208,6 +208,7 @@ let triviaGame = {
     seconds--;
   },
 
+  // sets coloe of the time remaining message
   timeWarning: function (seconds) {
 
     if (seconds < 10) {
@@ -220,7 +221,8 @@ let triviaGame = {
 
   },
 
-
+  // check the answer selected and respond based on right/wrong.
+  // then set timer before proceeding to nest question
   buttonProcess: function (e) {
 
     if (clockRunning) {
@@ -239,7 +241,8 @@ let triviaGame = {
     }
   },
 
-
+  // executed when all questons have been processed.
+  // display game results
   endGame: function () {
 
     $("#correctAnswers").text(wins);
@@ -251,7 +254,8 @@ let triviaGame = {
 
   },
 
-
+  // executed when Start Over button selected at end of game
+  // resets global variables and executes startGame
   restartGame: function () {
 
     seconds = "0";
@@ -266,6 +270,8 @@ let triviaGame = {
 
   },
 
+  // display image associated with the question 
+  // executed after questions answered right/wrong or time out
   responseImage: function () {
 
     $("#imageBox").html('<image src="' + image + '">')
@@ -274,6 +280,7 @@ let triviaGame = {
     $('#responseBox').show();
 
   },
+
 
   // Thanks to Graham McNicoll for the spiders
   // https://github.com/Auz

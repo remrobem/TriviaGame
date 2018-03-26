@@ -1,7 +1,7 @@
 /* needed to make sure image covered whole body */
 
 html {
-    height: 100%;
+    height: 900px;
 }
 
 body {
@@ -22,6 +22,16 @@ body {
 }
 
 #gameOver {
+    display: none;
+}
+
+#qaBox {
+    text-align: center;
+    display: none;
+}
+
+#responseBox {
+    text-align: center;
     display: none;
 }
 
@@ -78,9 +88,9 @@ body {
 }
 
 #imageBox img {
-
     max-width: 300px;
 }
+
 #gameOver {
     padding-top: 90px;
     font-family: 'Roboto', sans-serif;
@@ -102,4 +112,19 @@ body {
 .killSpiders {
     font-size: 20px;
     margin-top: 40px;
+}
+
+@media screen and (max-width: 1250px) {
+    .gameBtn {
+        font-size: 30px;
+        width: 100%;
+        margin-top: 5px;
+    }
+    #heading {
+        font-size: 30px;
+    }
+    #timeRemaining {
+        font-size: 25px;
+        padding-top: 30px;
+    }
 }
