@@ -37,7 +37,7 @@ body {
     margin: 15px;
     padding: 15px;
     border-width: 5px;
-    height: 900px;
+    max-height: 100%;
 }
 
 #heading {
@@ -62,9 +62,10 @@ body {
 .gameBtn {
     /* background-color: white; */
     font-family: 'Lato', sans-serif;
+    font-size: 50px;
     color: black;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
     background-color: transparent;
     border: none;
 }
@@ -73,12 +74,21 @@ body {
     width: 100%;
     margin-top: 30px;
     display: none;
+    height: 200px;
 }
 
+#imageBox img {
+
+    max-width: 300px;
+}
 #gameOver {
     padding-top: 90px;
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
+}
+
+#gameOverMsg {
+    font-size: 55px;
 }
 
 #gameOver .btn {
@@ -86,4 +96,10 @@ body {
     width: 100%;
     height: 90px;
     font-size: 30px;
+    margin-top: 20px;
+}
+
+.killSpiders {
+    font-size: 20px;
+    margin-top: 40px;
 }

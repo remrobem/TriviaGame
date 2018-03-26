@@ -7,42 +7,107 @@ window.onload = function () {
 
 
 let questionArray = [{
-    "question": "xxxx xxxx xxxxxx xxxxxx xxxxxx",
+    "question": "About how many species of spiders are known?",
     "answers": [{
-        "answer": "aaaa aaaaaa aaaaaaa aaaaa",
-        "correct": "true"
-      },
-      {
-        "answer": "bbbbbbbbb bbbbbbbbbbb",
+        "answer": "3,000",
         "correct": "false"
       },
       {
-        "answer": "cccc cccccc",
+        "answer": "18,000",
         "correct": "false"
       },
       {
-        "answer": "ddddd ddddddddddddddd",
+        "answer": "38,000",
+        "correct": "true",
+        "image": "assets/images/species.jpg"
+      },
+      {
+        "answer": "59,000",
         "correct": "false"
       }
     ]
   },
 
   {
-    "question": "yyyy yyyyyyyyyyyyyy",
+    "question": "What is the color of spider blood?",
     "answers": [{
-        "answer": "jjjjjj j j j jj",
+        "answer": "Blue",
+        "correct": "true",
+        "image": "assets/images/blueblood.jpg"
+      },
+      {
+        "answer": "Green",
         "correct": "false"
       },
       {
-        "answer": "kkkkkkkkkkkkkkkkkkkk",
-        "correct": "true"
-      },
-      {
-        "answer": "lllllllllllll lllllllllll",
+        "answer": "Red",
         "correct": "false"
       },
       {
-        "answer": "mmmmmmmm mmmmmm mmmmmmmmmmm",
+        "answer": "Yellow",
+        "correct": "false"
+      }
+    ]
+  },
+  {
+    "question": "The worlds largest spider is the goliath spider. How wide can it get?",
+    "answers": [{
+        "answer": "5 in.",
+        "correct": "false"
+      },
+      {
+        "answer": "8 in.",
+        "correct": "false"
+      },
+      {
+        "answer": "11 in.",
+        "correct": "true",
+        "image": "assets/images/goliath.jpg"
+      },
+      {
+        "answer": "14 in.",
+        "correct": "false"
+      }
+    ]
+  },
+  {
+    "question": "In what year did Spiderman first appear in comic books?",
+    "answers": [{
+        "answer": "1959",
+        "correct": "false"
+      },
+      {
+        "answer": "1962",
+        "correct": "true",
+        "image": "assets/images/spiderman.jpg"
+      },
+      {
+        "answer": "1966",
+        "correct": "false"
+      },
+      {
+        "answer": "1971",
+        "correct": "false"
+      }
+    ]
+  },
+  {
+    "question": "In the book Charlottes Web, who did Charlotte save?",
+    "answers": [{
+        "answer": "Danny boy",
+        "correct": "false"
+      },
+      {
+        "answer": "Wilbur the pig",
+        "correct": "true",
+        "image": "assets/images/wilbur.jpg"
+      },
+      {
+        "answer": "Larry the goose",
+        "correct": "false"
+      },
+      {
+        "answer": "Mr. Web",
         "correct": "false"
       }
     ]
@@ -58,11 +123,13 @@ let questionArray = [{
 
 
 
-let defaultSeconds = "5";
+let defaultSeconds = "30";
+let defaultTimeout = 5000;
 let seconds = "0";
 let clockRunning = false;
 let questionIndex = 0;
 let correctAnswer = "";
+let image = "";
 let wins = 0;
 let losses = 0;
 let unanswered = 0;
@@ -74,6 +141,7 @@ let triviaGame = {
     $('#start').hide();
     $('#gameOver').hide();
     $('#game').show();
+    $('#responseBox').hide();
     triviaGame.spiders();
     triviaGame.processQuestion();
 
@@ -81,8 +149,6 @@ let triviaGame = {
 
 
   processQuestion: function () {
-
-
 
     if (questionIndex < questionArray.length) {
 
@@ -101,13 +167,18 @@ let triviaGame = {
 
   displayAnswers: function (i) {
 
+
     questionArray[i]["answers"].forEach(function (_, j) {
       $("#button" + j).text(questionArray[i]["answers"][j]["answer"]);
 
       if (questionArray[i]["answers"][j]["correct"] === "true") {
         correctAnswer = questionArray[i]["answers"][j]["answer"];
+        image = questionArray[i]["answers"][j]["image"];
       }
     });
+
+    $('#responseBox').hide();
+    $('#qaBox').show();
   },
 
   count: function () {
@@ -123,12 +194,14 @@ let triviaGame = {
 
 
     if (seconds === "00") {
+
       clearInterval(intervalId);
       clockRunning = false;
       $("#question").text("Out of time. The answer is: " + correctAnswer);
       unanswered++;
 
-      timerId = setTimeout(triviaGame.processQuestion, 3000);
+      triviaGame.responseImage();
+      timerId = setTimeout(triviaGame.processQuestion, defaultTimeout);
 
     };
 
@@ -150,19 +223,20 @@ let triviaGame = {
 
   buttonProcess: function (e) {
 
-    clearInterval(intervalId);
-    clockRunning = false;
-    
-    if (this.attributes["2"].ownerElement.innerText === correctAnswer) {
-      $("#question").text("Correct Answer");
-      wins++;
-    } else {
-      $("#question").text("Wrong. The answer is: " + correctAnswer);
-      losses++;
+    if (clockRunning) {
+      clearInterval(intervalId);
+      clockRunning = false;
+
+      if (this.attributes["2"].ownerElement.innerText === correctAnswer) {
+        $("#question").text("Correct Answer");
+        wins++;
+      } else {
+        $("#question").text("Wrong. The answer is: " + correctAnswer);
+        losses++;
+      }
+      triviaGame.responseImage();
+      timerId = setTimeout(triviaGame.processQuestion, defaultTimeout);
     }
-
-    timerId = setTimeout(triviaGame.processQuestion, 3000);
-
   },
 
 
@@ -174,9 +248,7 @@ let triviaGame = {
 
     $('#game').hide();
     $('#gameOver').show();
-    
-    // clearInterval(intervalId);
-    // clearInterval(timerId);
+
   },
 
 
@@ -194,23 +266,18 @@ let triviaGame = {
 
   },
 
+  responseImage: function () {
 
+    $("#imageBox").html('<image src="' + image + '">')
 
+    $('#qaBox').hide();
+    $('#responseBox').show();
 
+  },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // Thanks to Graham McNicoll for the spiders
+  // https://github.com/Auz
+  // https://github.com/Auz/Bug
 
   spiders: function () {
     var targethead = window.document.getElementsByTagName("head")[0],
